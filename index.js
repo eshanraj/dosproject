@@ -13,17 +13,7 @@ io.on('connection', (socket) => {
   });
 });
 
-var clients = 0;
 
-io.on('connection', function(socket){
-   clients++;
-   socket.emit('newclientconnect',{ description: 'Hey, welcome!'});
-   socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'})
-   socket.on('disconnect', function () {
-      clients--;
-      socket.broadcast.emit('newclientconnect',{ description: clients + ' clients connected!'})
-   });
-});
 
 http.listen(port, () => {
   console.log(`Socket.IO server running at http://localhost:${port}/`);
